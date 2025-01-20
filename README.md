@@ -67,7 +67,7 @@ Training hyperparameters:
 
 The model can be used for text continuation tasks. Example usage on Hugging face: 
 
-![SmolLM2 Demo App](Spaces_demo.png)
+![SmolLM2 Demo App](Spaces_demo2.png)
 
 ## Training Logs
 ```
