@@ -1,0 +1,8 @@
+.venv
+__pycache__
+*.pyc
+sample.py
+checkpoints/model_latest.pt
+checkpoints/model_latest_10000.pt
+checkpoints/model_lightweight.pt
+
