@@ -968,16 +968,7 @@ Model Output:
 
 ==================
 
-
 Checkpoint saved at step 5000
-
-Creating model...
-Compiling model... 
-Refilling buffer...
-Cosmopedia Dataloader Initiated. 
-
-Checkpoint loaded. Resuming training from step 5000. 
-
 step5001 | loss: 2.843916 | dt: 974.17ms | tok/sec: 13139.42
 step5002 | loss: 2.442626 | dt: 963.34ms | tok/sec: 13287.09
 Refilling buffer...
