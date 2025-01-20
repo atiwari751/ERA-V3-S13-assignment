@@ -73,7 +73,7 @@ def save_lightweight_checkpoint(model, save_dir="checkpoints"):
     torch.save(model.state_dict(), checkpoint_path)
     print(f"\nLightweight checkpoint saved at: {checkpoint_path}")
 
-def load_lightweight_checkpoint(model, checkpoint_path="checkpoints/model_lightweight.pt"):
+def load_lightweight_checkpoint(model, checkpoint_path="checkpoints/model_lightweight_10000.pt"):
     """
     Load only model weights from lightweight checkpoint.
     
@@ -81,6 +81,10 @@ def load_lightweight_checkpoint(model, checkpoint_path="checkpoints/model_lightw
         model: The PyTorch model
         checkpoint_path: Path to lightweight checkpoint file
     """
-    state_dict = torch.load(checkpoint_path)
+    # Determine device
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    
+    # Load state dict with appropriate device
+    state_dict = torch.load(checkpoint_path, map_location=device)
     model.load_state_dict(state_dict)
-    return model 
+    return model.to(device) 

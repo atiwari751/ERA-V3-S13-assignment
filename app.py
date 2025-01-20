@@ -8,6 +8,10 @@ from transformers import AutoTokenizer
 @st.cache_resource
 def load_model_and_tokenizer():
     """Load model and tokenizer (cached by Streamlit)"""
+    # Determine device
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    print(f"Using device: {device}")
+    
     # Create and load model
     model = create_model()
     model = load_lightweight_checkpoint(model, "checkpoints/model_lightweight_10000.pt")
@@ -20,9 +24,12 @@ def load_model_and_tokenizer():
 
 def continue_text(model, tokenizer, prompt, max_new_tokens=50):
     """Continue the prompt text using the trained model"""
+    # Determine device
+    device = next(model.parameters()).device
+    
     # Encode prompt
     inputs = tokenizer(prompt, return_tensors="pt", truncation=True, max_length=512)
-    input_ids = inputs["input_ids"]
+    input_ids = inputs["input_ids"].to(device)
     
     # Generate one token at a time
     with torch.no_grad():
